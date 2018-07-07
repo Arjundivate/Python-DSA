@@ -13,14 +13,14 @@ class ll(object):
         self.head.nxt = self.tail
         self.size = 1
     def add_node(self,valu):
-        if self.size == 1:
+        if self.size == 1: #if the list only consists of one head, then we set the tail as the new element to be added
             self.tail = node(valu)
-            self.head.nxt = self.tail
+            self.head.nxt = self.tail 
             self.tail.prev = self.head
             self.size += 1
         else:
             newNode = node(valu)
-            newNode.prev = self.tail
+            newNode.prev = self.tail #if the list consists of more than one node, then the new =node to be added is now made the tail node
             self.tail.nxt = newNode
             self.tail = newNode
             self.size += 1
