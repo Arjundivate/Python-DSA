@@ -1,0 +1,50 @@
+#Implementing a doubly-linked list
+#Basic node class with two pointers. 
+class node(object):
+    def __init__(self,ele):
+        self.value = ele
+        self.nxt = None
+        self.prev = None
+#Main class with features such as adding a node and deleting a node
+class ll(object):
+    def __init__(self,value):
+        self.head = node(value)
+        self.tail = None
+        self.head.nxt = self.tail
+        self.size = 1
+    def add_node(self,valu):
+        if self.size == 1:
+            self.tail = node(valu)
+            self.head.nxt = self.tail
+            self.tail.prev = self.head
+            self.size += 1
+        else:
+            newNode = node(valu)
+            newNode.prev = self.tail
+            self.tail.nxt = newNode
+            self.tail = newNode
+            self.size += 1
+  
+    def del_node(self,ele):
+        g = self.head
+        if g.value == ele:
+            self.head == g.nxt #The head of the list is changed to the immediate next node
+            g.nxt.prev == None #As requried by the property of the head of a linked list, the new heads previous pointer now poitns to None
+        else:
+            while g.value != ele:     #until the node with deleting key is not found, the while loop continues to run
+                current = g #current value points to the node previous to the node to be deleted when the while loop breaks
+                next = g.nxt # next points to the element to be deleted
+                g = g.nxt 
+                if g == None: #if an element that is not present in the linked list is sent to be deleted, then an error is returned
+                    return ("Error")
+                    break
+            
+            current.nxt = next.nxt #changing pointers
+            next.nxt.prev = current #the previous and next node are now successfully been replaced
+                
+    def printing(self): #function to print values of the linked list
+        a = self.head
+        while a!= None:
+            print (a.value)
+            a = a.nxt
+            
